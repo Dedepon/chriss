@@ -1,0 +1,56 @@
+<div class="present-list">
+  <div class="spinner-container" *ngIf="listLoading">
+    <div class="loader full-size">Loading...</div>
+  </div>
+  <div class="present-container-list">
+    <div class="present-container" *ngFor="let present of presentList" (click)="openDetails(present)">
+      <div class="present-block">
+        <button
+          mat-button
+          *ngIf="ouni | async"
+          (click)="openPresentDialog(present)"
+        >
+          Edit present
+        </button>
+        <button
+          mat-button
+          *ngIf="ouni | async"
+          (click)="deletePresent(present)"
+        >
+          Delete present
+        </button>
+        <span class="present-name">{{ present.name }}</span>
+        <img class="present-image" [src]="present.imageUrl" />
+      </div>
+      <div class="present-block">
+        <a class="present-link" [href]="present.url" target="_blank">
+          {{ present.shop?.name }}
+        </a>
+        <span class="present-price">{{ present.price }}€</span>
+      </div>
+    </div>
+    <div
+      class="present-container create-container"
+      *ngIf="ouni | async"
+      (click)="openPresentDialog()"
+    >
+      Create new present
+    </div>
+  </div>
+</div>
+<ng-template #presentFormDialog>
+  <app-present-form
+    [present]="editedPresent"
+    [loading]="actionLoading"
+    [shops]="shopList"
+    (savePresent)="savePresent($event)"
+  >
+  </app-present-form>
+</ng-template>
+
+<ng-template #presentDetailsDialog>
+    <app-present-details
+        [present]="selectedPresent"
+    >
+    </app-present-details>
+</ng-template>

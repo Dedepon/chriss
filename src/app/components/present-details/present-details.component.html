@@ -1,0 +1,11 @@
+<h2 mat-dialog-title>Present form</h2>
+<div mat-dialog-content>
+    <span class="present-name">{{ present.name }}</span>
+    <img class="present-image" [src]="present.imageUrl" />
+
+</div>
+<div mat-dialog-actions align="end">
+    <button mat-raised-button color="primary" [disabled]="!form.valid || !form.dirty" (click)="save()">Save</button>
+    <button mat-button mat-dialog-close>Cancel</button>
+</div>
+  
