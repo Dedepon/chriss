@@ -15,7 +15,7 @@ const app = express();
 app.use(logger("dev"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ "extended": "false" }));
-app.use(favicon(path.join(__dirname, "dist/chriss/favicon.ico")));
+app.use(favicon(path.join(__dirname, "../dist/chriss/favicon.ico")));
 
 // API hooks
 app.use("/api/rest/present", presentRoute);
@@ -37,10 +37,10 @@ app.use(function (err, req, res, next) {
 
 // Default hooks
 // Serve static files
-app.get("*.*", express.static(path.join(__dirname, "dist/chriss"), {maxAge: "1y"}));
+app.get("*.*", express.static(path.join(__dirname, "../dist/chriss"), {maxAge: "1y"}));
 // Serve angular app
 app.all("*", function (req, res) {
-  res.status(200).sendFile(`/`, { root: path.join(__dirname, "dist/chriss") });
+  res.status(200).sendFile(`/`, { root: path.join(__dirname, "../dist/chriss") });
 });
 
 // Mongoose configuration

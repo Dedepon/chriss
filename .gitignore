@@ -46,3 +46,6 @@ Thumbs.db
 
 # MongoDb database
 /db
+
+# Package-lock
+package-lock.json

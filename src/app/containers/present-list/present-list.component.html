@@ -8,14 +8,14 @@
         <button
           mat-button
           *ngIf="ouni | async"
-          (click)="openPresentDialog(present)"
+          (click)="$event.stopPropagation(); openPresentDialog(present)"
         >
           Edit present
         </button>
         <button
           mat-button
           *ngIf="ouni | async"
-          (click)="deletePresent(present)"
+          (click)="$event.stopPropagation(); deletePresent(present)"
         >
           Delete present
         </button>

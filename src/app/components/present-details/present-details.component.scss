@@ -1,0 +1,28 @@
+.present-details-container {
+  display: flex;
+  flex-direction: row;
+  .present-image {
+    max-width: 50%;
+  }
+  .present-details {
+    display: flex;
+    flex-direction: column;
+    .empty-space {
+      flex-grow: 1;
+    }
+    .row {
+      width: 100%;
+      display: flex;
+      flex-direction: row;
+      label {
+        width: 30%;
+        align-self: center;
+      }
+      mat-radio-group {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+      }
+    }
+  }
+}

@@ -89,7 +89,9 @@ export class PresentListComponent implements OnInit {
   public openDetails(present: Present): void {
     if (present) {
       this.selectedPresent = present;
-      this.dialog.open(this.presentDetailsDialog);
+      this.dialog.open(this.presentDetailsDialog, {
+        width: "800px"
+      });
     }
   }
 }

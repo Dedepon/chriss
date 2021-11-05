@@ -1,4 +1,6 @@
 import { NgModule } from '@angular/core';
+import { MatDividerModule } from "@angular/material/divider";
+import { MatRadioModule } from "@angular/material/radio";
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -63,6 +65,8 @@ const appRoutes: Routes = [
     BrowserAnimationsModule,
     MatButtonModule,
     MatDialogModule,
+    MatRadioModule,
+    MatDividerModule
   ],
   providers: [PresentService, ShopService],
   bootstrap: [AppComponent],

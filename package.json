@@ -20,7 +20,7 @@
     "@angular/forms": "~12.2.0",
     "@angular/material": "^12.2.12",
     "@angular/platform-browser": "~12.2.0",
-    "@angular/platform-browser-dynamic": "~12.2.0",
+    "@angular/platform-browsnodeer-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
     "bluebird": "^3.7.2",
     "body-parser": "^1.19.0",
