@@ -1,0 +1,96 @@
+<div class="shopping-basket">
+  <div class="spinner-container" *ngIf="loading">
+    <div class="loader full-size">Loading...</div>
+  </div>
+  <div class="current-order">
+    <div class="order-article" *ngFor="let presentOrder of order?.presents">
+      <div class="left-column">
+        <img [src]="presentOrder.present.imageUrl" />
+        <div class="article-infos">
+          <span class="article-name">{{ presentOrder.present.name }}</span>
+          <span class="article-quantity"
+            >Qté:
+            <mat-form-field>
+              <input
+                id="quantity"
+                type="number"
+                matInput
+                [(ngModel)]="presentOrder.quantity"
+              />
+            </mat-form-field>
+            <button mat-raised-button (click)="upatePresentOrder(presentOrder)">
+              Mettre à jour
+            </button>
+          </span>
+        </div>
+      </div>
+      <div class="right-column">
+        <span *ngIf="presentOrder.payment === 'directOrder'"
+          >Livré chez nous ({{ presentOrder.totalPrice }}€)</span
+        >
+        <span *ngIf="presentOrder.payment === 'payment'"
+          >Viré sur notre compte : {{ presentOrder.totalPrice }}€</span
+        >
+        <mat-icon (click)="deleteItem(presentOrder)"
+          >remove_shopping_cart</mat-icon
+        >
+      </div>
+    </div>
+    <div class="total">
+      Total chez le marchand : {{ getTotal("directOrder") }}€
+    </div>
+    <div class="total">Total par virement : {{ getTotal("payment") }}€</div>
+    <div class="confirmation-button">
+      <button mat-raised-button (click)="confirmOrder()">Confirmer</button>
+    </div>
+  </div>
+  <mat-divider></mat-divider>
+  <div class="old-order">
+    <mat-accordion class="old-order" multi>
+      <mat-expansion-panel
+        class="old-order-block"
+        *ngFor="let oldOrder of oldOrders"
+      >
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            <span class="old-order-title">{{
+              oldOrder?.date?.toLocaleString()
+            }}</span>
+          </mat-panel-title>
+          <mat-panel-description>
+            <div class="old-order-prices">
+              <span *ngIf="oldOrder?.totalPrice"
+                >Total chez le marchand : {{ oldOrder?.totalPrice }}€</span
+              >
+              <span *ngIf="oldOrder?.totalPriceToPay"
+                >Total chez le marchand : {{ oldOrder?.totalPriceToPay }}€</span
+              >
+            </div>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <div
+          class="order-article"
+          *ngFor="let presentOrder of oldOrder?.presents"
+        >
+          <div class="left-column">
+            <img [src]="presentOrder.present.imageUrl" />
+            <div class="article-infos">
+              <span class="article-name">{{ presentOrder.present.name }}</span>
+              <span class="article-quantity"
+                >Qté:&nbsp;{{ presentOrder.quantity }}
+              </span>
+            </div>
+          </div>
+          <div class="right-column">
+            <span *ngIf="presentOrder.payment === 'directOrder'"
+              >Livré chez nous ({{ presentOrder.totalPrice }}€)</span
+            >
+            <span *ngIf="presentOrder.payment === 'payment'"
+              >Viré sur notre compte : {{ presentOrder.totalPrice }}€</span
+            >
+          </div>
+        </div>
+      </mat-expansion-panel>
+    </mat-accordion>
+  </div>
+</div>

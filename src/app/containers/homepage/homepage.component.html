@@ -1,0 +1,91 @@
+<div class="home-page">
+  <div class="introduction">
+    <span>Coucou c'est nous !</span>
+    <span
+      >Voici un texte d'introduction qu'il faut remplir avec ma cillie
+      d'amour.</span
+    >
+    <span
+      >Merci d'introduire votre nom ou adresse email afin que nous puission
+      suivre votre cadeau.</span
+    >
+    <span>Bisous</span>
+  </div>
+  <mat-button-toggle-group name="authentication" *ngIf="!isLoggedIn()">
+    <mat-button-toggle value="login" (click)="openLogin(login)"
+      >S'authentifier</mat-button-toggle
+    >
+    <mat-button-toggle value="register" (click)="openRegister(register)"
+      >S'enregistrer</mat-button-toggle
+    >
+  </mat-button-toggle-group>
+  <button mat-raised-button *ngIf="isLoggedIn()" (click)="getOrders()">
+    Continuer vers la liste de cadeaux.
+  </button>
+</div>
+
+<ng-template #register let-register="onRegister">
+  <form>
+    <h2 mat-dialog-title>Enregistrement</h2>
+    <div mat-dialog-content class="form">
+      <div class="spinner-container" *ngIf="loading">
+        <div class="loader full-size">Loading...</div>
+      </div>
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input matInput [(ngModel)]="userId" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" [(ngModel)]="password" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Confirmation</mat-label>
+        <input
+          matInput
+          type="password"
+          class="continue-button"
+          [(ngModel)]="passwordConfirmation"
+        />
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button
+        mat-raised-button
+        [disabled]="loading || !userId || !password || !passwordConfirmation"
+        (click)="onRegister()"
+      >
+        Continuer
+      </button>
+    </div>
+  </form>
+</ng-template>
+
+<ng-template #login let-login="onLogin">
+  <form>
+    <h2 mat-dialog-title>Authentification</h2>
+    <div mat-dialog-content class="form">
+      <div class="spinner-container" *ngIf="loading">
+        <div class="loader full-size">Loading...</div>
+      </div>
+      <mat-form-field>
+        <mat-label>Login</mat-label>
+        <input matInput [(ngModel)]="userId" />
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Mot de passe</mat-label>
+        <input matInput type="password" [(ngModel)]="password" />
+      </mat-form-field>
+    </div>
+    <div mat-dialog-actions align="end">
+      <button
+        mat-raised-button
+        class="continue-button"
+        [disabled]="loading || !userId || !password"
+        (click)="onLogin()"
+      >
+        Continuer
+      </button>
+    </div>
+  </form>
+</ng-template>

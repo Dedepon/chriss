@@ -33,7 +33,9 @@
         <mat-form-field>
           <mat-label>Shop</mat-label>
           <mat-select formControlName="shop">
-            <mat-option *ngFor="let shop of shops" [value]="shop._id">{{ shop.name }}</mat-option>
+            <mat-option *ngFor="let shop of shops" [value]="shop._id">{{
+              shop.name
+            }}</mat-option>
           </mat-select>
         </mat-form-field>
       </div>
@@ -49,10 +51,26 @@
           <input matInput formControlName="quantity" />
         </mat-form-field>
       </div>
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Method</mat-label>
+          <mat-select formControlName="paymentMethod" multiple>
+            <mat-option [value]="'payment'">Virement</mat-option>
+            <mat-option [value]="'directOrder'">Marchand</mat-option>
+          </mat-select>
+        </mat-form-field>
+      </div>
     </form>
   </div>
 </div>
 <div mat-dialog-actions align="end">
-  <button mat-raised-button color="primary" [disabled]="!form.valid || !form.dirty" (click)="save()">Save</button>
+  <button
+    mat-raised-button
+    color="primary"
+    [disabled]="loading || !form.valid || !form.dirty"
+    (click)="save()"
+  >
+    Save
+  </button>
   <button mat-button mat-dialog-close>Cancel</button>
 </div>

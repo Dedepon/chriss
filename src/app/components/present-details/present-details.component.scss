@@ -1,12 +1,17 @@
 .present-details-container {
+  position: relative;
   display: flex;
   flex-direction: row;
+  justify-content: space-between;
   .present-image {
-    max-width: 50%;
+    width: 50%;
+    height: auto;
+    margin-right: 12px;
   }
   .present-details {
     display: flex;
     flex-direction: column;
+    width: 50%;
     .empty-space {
       flex-grow: 1;
     }

@@ -1,10 +1,18 @@
+import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
-import { BehaviorSubject } from 'rxjs';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { Observable } from 'rxjs';
 import { PresentFormComponent } from 'src/app/components/present-form/present-form.component';
-import { GLOBAL } from 'src/app/constants';
+import {
+  GLOBAL,
+  SNACK_BAR_CONFIG_ERROR,
+  SNACK_BAR_CONFIG_SUCCESS,
+} from 'src/app/constants';
 import { Present } from 'src/app/models/present';
+import { PresentOrder } from 'src/app/models/present-order';
 import { Shop } from 'src/app/models/shop';
+import { PresentOrderService } from 'src/app/services/present-order/present-order.service';
 import { PresentService } from 'src/app/services/present/present.service';
 import { ShopService } from 'src/app/services/shop/shop.service';
 
@@ -25,73 +33,132 @@ export class PresentListComponent implements OnInit {
   public selectedPresent: Present;
   public listLoading: boolean = false;
   public actionLoading: boolean = false;
-  public ouni: BehaviorSubject<boolean> = GLOBAL.OUNI;
+  public ouni: Observable<boolean> = GLOBAL.OUNI.asObservable();
 
-  private dialogRef: MatDialogRef<PresentFormComponent>;
+  private dialogRef: MatDialogRef<any>;
 
   constructor(
     private presentService: PresentService,
     private shopService: ShopService,
-    readonly dialog: MatDialog
+    private presentOrderService: PresentOrderService,
+    readonly dialog: MatDialog,
+    private snackBar: MatSnackBar
   ) {}
 
   ngOnInit(): void {
     this.reloadList();
-    this.shopService.getShopList().subscribe((data: Shop[]) => this.shopList = data);
+    this.shopService
+      .getShopList()
+      .subscribe((data: Shop[]) => (this.shopList = data));
   }
 
   public openPresentDialog(present?: Present): void {
     this.editedPresent = present || new Present();
     this.dialogRef = this.dialog.open(this.presentFormDialog, {
-      width: "600px"
+      width: '600px',
     });
   }
 
   public savePresent(present: Present): void {
     this.actionLoading = true;
     if (present._id) {
-      this.presentService.updatePresent(present).subscribe(() => {
-        this.actionLoading = false;
-        this.reloadList();
-      },
-      () => this.actionLoading = false);
+      this.presentService.updatePresent(present).subscribe(
+        () => this.confirmAndReload('Cadeau modifié avec succès'),
+        (e: HttpErrorResponse) =>
+          this.warnAndStopLoading(
+            'Une erreur est survenue lors de la modification du cadeau : ' +
+              e &&
+              e.error &&
+              e.error.error
+              ? e.error.error
+              : e.toString()
+          )
+      );
     } else {
-      this.presentService.createPresent(present).subscribe(() => {
-        this.actionLoading = false;
-        this.reloadList();
-      },
-      () => this.actionLoading = false);
+      this.presentService.createPresent(present).subscribe(
+        () => this.confirmAndReload('Cadeau créé avec succès.'),
+        (e: HttpErrorResponse) =>
+          this.warnAndStopLoading(
+            'Une erreur est survenue lors de la création du cadeau : ' + e &&
+              e.error &&
+              e.error.error
+              ? e.error.error
+              : e.toString()
+          )
+      );
     }
   }
 
   public deletePresent(present: Present): void {
     if (present._id) {
       this.actionLoading = true;
-      this.presentService.deletePresent(present).subscribe(() => {
-        this.actionLoading = false;
-        this.reloadList();
-      },
-      () => this.actionLoading = false);
+      this.presentService.deletePresent(present).subscribe(
+        () => this.confirmAndReload('Cadeau supprimé avec succès.'),
+        (e: HttpErrorResponse) =>
+          this.warnAndStopLoading(
+            'Une erreur est survenue lors de la suppression du cadeau : ' + e &&
+              e.error &&
+              e.error.error
+              ? e.error.error
+              : e.toString()
+          )
+      );
     }
   }
 
   public reloadList(): void {
-    debugger;
     this.listLoading = true;
     this.dialogRef && this.dialogRef.close();
-    this.presentService.loadPresents().subscribe((data: Present[]) => {
-      this.presentList = data;
-      this.listLoading = false;
-    },
-    () => this.listLoading = false);
+    this.presentService.loadPresents().subscribe(
+      (data: Present[]) => {
+        this.presentList = data;
+        this.listLoading = false;
+      },
+      (e: HttpErrorResponse) =>
+        this.warnAndStopLoading(
+          'Une erreur est survenue lors du chargement des cadeaux : ' + e &&
+            e.error &&
+            e.error.error
+            ? e.error.error
+            : e.toString()
+        )
+    );
   }
 
   public openDetails(present: Present): void {
     if (present) {
       this.selectedPresent = present;
-      this.dialog.open(this.presentDetailsDialog, {
-        width: "800px"
+      this.dialogRef = this.dialog.open(this.presentDetailsDialog, {
+        width: '75%',
       });
     }
+  }
+
+  public savePresentOrder(presentOrder: Partial<PresentOrder>): void {
+    this.actionLoading = true;
+    this.presentOrderService.createPresentOrder(presentOrder).subscribe(
+      () => this.confirmAndReload('Cadeau ajouté au panier'),
+      (e: HttpErrorResponse) =>
+        this.warnAndStopLoading(
+          "Une erreur est survenue lors de l'ajout du cadeau dans le panier : " +
+            e &&
+            e.error &&
+            e.error.error
+            ? e.error.error
+            : e.toString()
+        )
+    );
+  }
+
+  private warnAndStopLoading(errorMessage: string): void {
+    this.snackBar.open(errorMessage, 'Ok', SNACK_BAR_CONFIG_ERROR);
+    this.listLoading = false;
+    this.actionLoading = false;
+  }
+
+  private confirmAndReload(confirmMessage: string): void {
+    this.snackBar.open(confirmMessage, '', SNACK_BAR_CONFIG_SUCCESS);
+    this.actionLoading = false;
+    this.reloadList();
   }
 }

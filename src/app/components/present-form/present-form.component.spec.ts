@@ -1,16 +1,15 @@
-import { ComponentFixture, TestBed } from "@angular/core/testing";
+import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PresentFormComponent } from "./present-form.component";
+import { PresentFormComponent } from './present-form.component';
 
-describe("PresentFormComponent", () => {
+describe('PresentFormComponent', () => {
   let component: PresentFormComponent;
   let fixture: ComponentFixture<PresentFormComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ PresentFormComponent ]
-    })
-    .compileComponents();
+      declarations: [PresentFormComponent],
+    }).compileComponents();
   });
 
   beforeEach(() => {
@@ -19,7 +18,7 @@ describe("PresentFormComponent", () => {
     fixture.detectChanges();
   });
 
-  it("should create", () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 });

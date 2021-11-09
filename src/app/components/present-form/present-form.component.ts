@@ -27,6 +27,7 @@ export class PresentFormComponent implements OnInit {
       shop: new FormControl(undefined, Validators.required),
       price: new FormControl(undefined, Validators.required),
       quantity: new FormControl(),
+      paymentMethod: new FormControl([], Validators.required),
     });
   }
 

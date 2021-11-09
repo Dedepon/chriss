@@ -1,8 +1,6 @@
 .present-list {
   position: relative;
   width: 100%;
-  height: 100%;
-  font-size: 1.4rem;
   .present-container-list {
     display: flex;
     flex-direction: row;
@@ -24,12 +22,16 @@
         drop-shadow(rgba(98, 98, 98, 0.15) 8px 16px 16px);
       transition: all 0.25s ease-out;
       background-color: #f8f8f8;
+      cursor: pointer;
       &.create-container {
         align-items: center;
         justify-content: center;
       }
       &:hover {
         transform: scale(1.05);
+      }
+      &[disabled] {
+        opacity: 0.5;
       }
       .present-block {
         display: flex;

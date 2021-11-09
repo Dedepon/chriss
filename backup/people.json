@@ -1,0 +1,14 @@
+[{
+  "_id": {
+    "$oid": "6185ab289d93336d67a32593"
+  },
+  "userId": "Denis",
+  "password": "da3811154d59c4267077ddd8bb768fa9b06399c486e1fc00485116b57c9872f5",
+  "orders": [],
+  "__v": 0,
+  "address": null,
+  "email": "bourguignon.denis.2012@gmail.com",
+  "firstName": "Denis",
+  "lastName": "Bourguignon",
+  "phone": "+32495833183"
+}]

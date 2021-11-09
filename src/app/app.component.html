@@ -1,6 +1,9 @@
-<div class="header">
-    <button mat-button [routerLink]="['/']">Accueil</button>
+<div class="header" *ngIf="isOutOfHomePage()">
     <button mat-button [routerLink]="['/presents']">Liste des cadeaux</button>
-    <button mat-button [routerLink]="['/cart']">Panier</button>
+    <div class="right-container">
+        <button mat-icon-button [routerLink]="['/profile']"><mat-icon>person</mat-icon></button>
+        <button mat-icon-button [routerLink]="['/basket']"><mat-icon>shopping_cart</mat-icon></button>
+        <button mat-icon-button (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>
+    </div>
 </div>
 <router-outlet></router-outlet>

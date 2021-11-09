@@ -11,4 +11,5 @@ export class Present {
     public quantity: number;
     public ordered: number;
     public status: "complete" | "ongoing";
+    public paymentMethod: ("directOrder" | "payment")[]
 }

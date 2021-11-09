@@ -1,0 +1,24 @@
+[{
+  "_id": {
+    "$oid": "6188368b5e6b88b85ab820fd"
+  },
+  "date": {
+    "$date": "2021-11-07T22:03:09.667Z"
+  },
+  "donator": {
+    "$oid": "6185ab289d93336d67a32593"
+  },
+  "totalPrice": 10240,
+  "totalPriceToPay": 0,
+  "comment": "",
+  "presents": [
+    {
+      "$oid": "6188369b5e6b88b85ab8210a"
+    },
+    {
+      "$oid": "618836a15e6b88b85ab82111"
+    }
+  ],
+  "status": "open",
+  "__v": 0
+}]

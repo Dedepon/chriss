@@ -3,7 +3,12 @@
     <div class="loader full-size">Loading...</div>
   </div>
   <div class="present-container-list">
-    <div class="present-container" *ngFor="let present of presentList" (click)="openDetails(present)">
+    <div
+      class="present-container"
+      *ngFor="let present of presentList"
+      (click)="openDetails(present)"
+      [attr.disabled]="present.ordered >= present.quantity || null"
+    >
       <div class="present-block">
         <button
           mat-button
@@ -23,7 +28,12 @@
         <img class="present-image" [src]="present.imageUrl" />
       </div>
       <div class="present-block">
-        <a class="present-link" [href]="present.url" target="_blank">
+        <a
+          class="present-link"
+          [href]="present.url"
+          target="_blank"
+          (click)="$event.stopPropagation()"
+        >
           {{ present.shop?.name }}
         </a>
         <span class="present-price">{{ present.price }}€</span>
@@ -49,8 +59,10 @@
 </ng-template>
 
 <ng-template #presentDetailsDialog>
-    <app-present-details
-        [present]="selectedPresent"
-    >
-    </app-present-details>
+  <app-present-details
+    [present]="selectedPresent"
+    [loading]="actionLoading"
+    (saveOrder)="savePresentOrder($event)"
+  >
+  </app-present-details>
 </ng-template>

@@ -1,10 +1,10 @@
 <h2 mat-dialog-title>{{ present.name }}</h2>
 <div mat-dialog-content>
   <div class="present-details-container">
-    <img
-      class="present-image"
-      [src]="present.imageUrl"
-    />
+    <div class="spinner-container" *ngIf="loading">
+      <div class="loader full-size">Loading...</div>
+    </div>
+    <img class="present-image" [src]="present.imageUrl" />
     <div class="present-details">
       <div class="present-block"></div>
       <div class="row">
@@ -14,58 +14,69 @@
       <div class="row">
         <span class="present-price">{{ present.price }}€</span>
       </div>
-      <div
-        class="row"
-        *ngIf="present.ordered !== 0"
-      >
-        <span class="present-quantity">{{ present.ordered}}/{{ present.quantity }} ont déjà été offerts</span>
+      <div class="row">
+        <span class="present-quantity"
+          >{{ present.ordered }}/{{ present.quantity }} ont déjà été
+          offerts</span
+        >
       </div>
       <div class="row">
         <a
           class="present-link"
+          target="_blank"
           [href]="present.url"
-        >Voir l'article chez le reventeur ({{ present.shop.name }})</a>
+          tabindex="-1"
+          >Voir l'article chez le reventeur ({{ present.shop.name }})</a
+        >
       </div>
       <div class="empty-space"></div>
-      <div class="row">
-        <mat-radio-group
-          aria-label="Sélectionnez un moyen de nous faire parvenir le cadeau"
-          [(ngModel)]="paymentType"
-        >
-          <mat-radio-button value="payment">Faire un virement</mat-radio-button>
-          <mat-radio-button value="directOrder">Livrer le cadeau chez nous</mat-radio-button>
-        </mat-radio-group>
-      </div>
-      <div class="row">
-        <label for="quantity">Quantité</label>
-        <mat-form-field>
-          <input
-            id="quantity"
-            matInput
-            [(ngModel)]="quantity"
-          />
-        </mat-form-field>
-      </div>
-      <div class="row">
-        <label>Total</label> <span>{{ quantity * present.price }}€</span>
-      </div>
+      <ng-container *ngIf="present.ordered < present.quantity">
+        <div class="row">
+          <mat-radio-group
+            aria-label="Sélectionnez un moyen de nous faire parvenir le cadeau"
+            [(ngModel)]="paymentType"
+          >
+            <mat-radio-button
+              value="directOrder"
+              *ngIf="present.paymentMethod.indexOf('directOrder') !== -1"
+              >Livrer le cadeau chez nous</mat-radio-button
+            >
+            <mat-radio-button
+              value="payment"
+              *ngIf="present.paymentMethod.indexOf('payment') !== -1"
+              >Faire un virement</mat-radio-button
+            >
+          </mat-radio-group>
+        </div>
+        <div class="row">
+          <label for="quantity">Quantité</label>
+          <mat-form-field>
+            <input
+              id="quantity"
+              type="number"
+              matInput
+              [(ngModel)]="quantity"
+              [max]="present.quantity - present.ordered"
+            />
+          </mat-form-field>
+        </div>
+        <div class="row">
+          <label>Total</label> <span>{{ quantity * present.price }}€</span>
+        </div>
+      </ng-container>
     </div>
   </div>
 </div>
-<div
-  mat-dialog-actions
-  align="end"
->
+<div mat-dialog-actions align="end" *ngIf="present.ordered < present.quantity">
   <button
     mat-raised-button
     color="primary"
-    [disabled]="quantity !== 0"
+    [disabled]="
+      loading || quantity === 0 || quantity > present.quantity - present.ordered
+    "
     (click)="save()"
-  >Save
+  >
+    Save
   </button>
-  <button
-    mat-button
-    mat-dialog-close
-  >Cancel
-  </button>
+  <button mat-button mat-dialog-close>Cancel</button>
 </div>

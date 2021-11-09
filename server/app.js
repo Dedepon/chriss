@@ -47,8 +47,13 @@ app.all("*", function (req, res) {
 const mongoose = require("mongoose");
 mongoose.Promise = require("bluebird");
 
+var options = {
+  promiseLibrary: require("bluebird"),
+  readPreference: "primary"
+}
+
 // Mongoose connection
-mongoose.connect("mongodb://127.0.0.1/chriss", { promiseLibrary: require("bluebird") })
+mongoose.connect("mongodb://127.0.0.1:30000/chriss?replicaSet=rs0", options)
   .then(() => console.log("connection succesful"))
   .catch((err) => console.error(err));
 

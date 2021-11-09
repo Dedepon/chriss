@@ -1,0 +1,50 @@
+<div class="profile">
+
+  <div class="spinner-container" *ngIf="loading">
+    <div class="loader full-size">Loading...</div>
+  </div>
+  <div class="profile-info">
+    Afin de pouvoir vous remercier, nous aimerions connaître vos coordonnées.<br />
+    Ces informations ne sont pas obligatoires, et ne seront jamais communiquées
+    à des tiers pour quelconque raison.<br />
+    Si vous avez le moindre doute, n'hésitez pas à nous les envoyer à l'adresse
+    <a href="mailto:bouguigon.denis.2012@gmail.com"
+      >bouguigon.denis.2012@gmail.com</a
+    >.
+  </div>
+  <div class="profile-form">
+    <form [formGroup]="form">
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Nom</mat-label>
+          <input matInput formControlName="lastName" />
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Prénom</mat-label>
+          <input matInput formControlName="firstName" />
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Adresse</mat-label>
+          <input matInput formControlName="address" />
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Adresse mail</mat-label>
+          <input matInput formControlName="email" />
+        </mat-form-field>
+      </div>
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Téléphone</mat-label>
+          <input matInput formControlName="phone" />
+        </mat-form-field>
+      </div>
+      <button mat-raised-button (click)="save()">Sauvegarder</button>
+    </form>
+  </div>
+</div>

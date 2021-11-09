@@ -1,7 +1,7 @@
 const mongoose = require("mongoose");
 
 const PresentOrderSchema = new mongoose.Schema({
-  present: {type: mongoose.Schema.Types.ObjectId, ref: 'Present'},
+  present: {type: mongoose.Schema.Types.ObjectId, ref: "Present"},
   quantity: Number,
   totalPrice: Number,
   payment: {
