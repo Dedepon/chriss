@@ -32,11 +32,7 @@
       <div class="form-row">
         <mat-form-field>
           <mat-label>Shop</mat-label>
-          <mat-select formControlName="shop">
-            <mat-option *ngFor="let shop of shops" [value]="shop._id">{{
-              shop.name
-            }}</mat-option>
-          </mat-select>
+          <input matInput formControlName="shop" />
         </mat-form-field>
       </div>
       <div class="form-row">

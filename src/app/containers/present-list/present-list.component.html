@@ -34,7 +34,7 @@
           target="_blank"
           (click)="$event.stopPropagation()"
         >
-          {{ present.shop?.name }}
+          {{ present.shop }}
         </a>
         <span class="present-price">{{ present.price }}€</span>
       </div>
@@ -52,7 +52,6 @@
   <app-present-form
     [present]="editedPresent"
     [loading]="actionLoading"
-    [shops]="shopList"
     (savePresent)="savePresent($event)"
   >
   </app-present-form>

@@ -6,8 +6,9 @@
 
 const app = require("../app");
 const debug = require("debug")("mean-app:server");
-const https = require("https");
-const fs = require('fs');
+// const https = require("https");
+const http = require("http");
+// const fs = require('fs');
 
 /**
  * Get port from environment and store in Express.
@@ -17,20 +18,20 @@ const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
 /**
- * Create HTTPS server.
+ * Create HTTP / HTTPS server.
  */
-const server = https.createServer({
-  key: fs.readFileSync('server.key'),
-  cert: fs.readFileSync('server.cert')
-}, app)
+// const httpsServer = https.createServer({
+//   key: fs.readFileSync('server.key'),
+//   cert: fs.readFileSync('server.cert')
+// }, app)
+const httpServer = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
-
-server.listen(port);
-server.on("error", onError);
-server.on("listening", onListening);
+ httpServer.listen(port);
+ httpServer.on("error", onError);
+ httpServer.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
@@ -85,7 +86,7 @@ function onError(error) {
  */
 
 function onListening() {
-  const addr = server.address();
+  const addr = httpServer.address();
   const bind = typeof addr === "string"
     ? "pipe " + addr
     : "port " + addr.port;

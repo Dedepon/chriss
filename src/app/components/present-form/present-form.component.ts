@@ -1,7 +1,6 @@
 import { Component, Input, Output, EventEmitter, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Present } from 'src/app/models/present';
-import { Shop } from 'src/app/models/shop';
 
 @Component({
   selector: 'app-present-form',
@@ -10,7 +9,6 @@ import { Shop } from 'src/app/models/shop';
 })
 export class PresentFormComponent implements OnInit {
   @Input() public present: Present;
-  @Input() public shops: Shop[];
   @Input() public loading: boolean = false;
 
   @Output() public readonly savePresent: EventEmitter<Present> =

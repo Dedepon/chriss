@@ -5,7 +5,7 @@ const PresentSchema = new mongoose.Schema({
   url: String,
   imageUrl: String,
   comment: String,
-  shop: {type: mongoose.Schema.Types.ObjectId, ref: "Shop"},
+  shop: String,
   price: { type: Number, min: 0 },
   quantity: Number,
   ordered: Number,

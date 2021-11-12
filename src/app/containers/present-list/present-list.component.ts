@@ -11,10 +11,8 @@ import {
 } from 'src/app/constants';
 import { Present } from 'src/app/models/present';
 import { PresentOrder } from 'src/app/models/present-order';
-import { Shop } from 'src/app/models/shop';
 import { PresentOrderService } from 'src/app/services/present-order/present-order.service';
 import { PresentService } from 'src/app/services/present/present.service';
-import { ShopService } from 'src/app/services/shop/shop.service';
 
 @Component({
   selector: 'app-present-list',
@@ -28,7 +26,6 @@ export class PresentListComponent implements OnInit {
   presentDetailsDialog: TemplateRef<PresentFormComponent>;
 
   public presentList: Present[] = [];
-  public shopList: Shop[] = [];
   public editedPresent: Present;
   public selectedPresent: Present;
   public listLoading: boolean = false;
@@ -39,7 +36,6 @@ export class PresentListComponent implements OnInit {
 
   constructor(
     private presentService: PresentService,
-    private shopService: ShopService,
     private presentOrderService: PresentOrderService,
     readonly dialog: MatDialog,
     private snackBar: MatSnackBar
@@ -47,9 +43,6 @@ export class PresentListComponent implements OnInit {
 
   ngOnInit(): void {
     this.reloadList();
-    this.shopService
-      .getShopList()
-      .subscribe((data: Shop[]) => (this.shopList = data));
   }
 
   public openPresentDialog(present?: Present): void {

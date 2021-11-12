@@ -8,7 +8,6 @@ const presentRoute = require("./routes/present");
 const presentOrderRoute = require("./routes/present-order");
 const orderRoute = require("./routes/order");
 const personRoute = require("./routes/person");
-const shopRoute = require("./routes/shop");
 const app = express();
 
 // Third party config
@@ -22,7 +21,6 @@ app.use("/api/rest/present", presentRoute);
 app.use("/api/rest/present-order", presentOrderRoute);
 app.use("/api/rest/order", orderRoute);
 app.use("/api/rest/person", personRoute);
-app.use("/api/rest/shop", shopRoute);
 
 // Error handlers
 app.use(function (err, req, res, next) {

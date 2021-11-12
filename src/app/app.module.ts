@@ -21,8 +21,6 @@ import { MatExpansionModule } from "@angular/material/expansion";
 
 import { PresentListComponent } from "./containers/present-list/present-list.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
-import { PresentService } from "./services/present/present.service";
-import { ShopService } from "./services/shop/shop.service";
 import { PresentFormComponent } from "./components/present-form/present-form.component";
 import { HomepageComponent } from "./containers/homepage/homepage.component";
 import { PresentDetailsComponent } from "./components/present-details/present-details.component";
@@ -95,7 +93,7 @@ const appRoutes: Routes = [
     MatExpansionModule,
     MatSnackBarModule
   ],
-  providers: [PresentService, ShopService],
+  providers: [],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
