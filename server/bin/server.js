@@ -26,8 +26,9 @@ app.set("port", port);
  * Create HTTPS server.
  */
 // const httpsServer = https.createServer({
-//   key: fs.readFileSync('server.key'),
-//   cert: fs.readFileSync('server.cert')
+//   key: privateKey,
+//   cert: certificate,
+//   ca: ca
 // }, app)
 
 /**
