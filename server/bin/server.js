@@ -3,7 +3,6 @@
 /**
  * Module dependencies.
  */
-
 const app = require("../app");
 const debug = require("debug")("mean-app:server");
 // const https = require("https");
@@ -13,25 +12,38 @@ const http = require("http");
 /**
  * Get port from environment and store in Express.
  */
-
 const port = normalizePort(process.env.PORT || "3000");
 app.set("port", port);
 
+/*
+ * Get certificate (fullChain.pem contains cert.pem and chain.pem)
+ */
+// const privateKey = fs.readFileSync('/etc/letsencrypt/live/cillieetouni.be/privkey.pem', 'utf8');
+// const certificate = fs.readFileSync('/etc/letsencrypt/live/cillieetouni.be/cert.pem', 'utf8');
+// const ca = fs.readFileSync('/etc/letsencrypt/live/cillieetouni.be/chain.pem', 'utf8');
+
 /**
- * Create HTTP / HTTPS server.
+ * Create HTTPS server.
  */
 // const httpsServer = https.createServer({
 //   key: fs.readFileSync('server.key'),
 //   cert: fs.readFileSync('server.cert')
 // }, app)
+
+/**
+ * Create HTTP server.
+ */
 const httpServer = http.createServer(app);
 
 /**
  * Listen on provided port, on all network interfaces.
  */
- httpServer.listen(port);
- httpServer.on("error", onError);
- httpServer.on("listening", onListening);
+httpServer.listen(port);
+// httpsServer.listen(port);
+httpServer.on("error", onError);
+// httpsServer.on("error", onError);
+httpServer.on("listening", onListening);
+// httpsServer.on("listening", onListening);
 
 /**
  * Normalize a port into a number, string, or false.
