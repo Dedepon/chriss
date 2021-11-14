@@ -106,6 +106,7 @@ export class PresentListComponent implements OnInit {
     this.presentService.loadPresents().subscribe(
       (data: Present[]) => {
         this.presentList = data;
+        this.computeList();
         this.listLoading = false;
       },
       (e: HttpErrorResponse) =>
@@ -144,6 +145,26 @@ export class PresentListComponent implements OnInit {
     );
   }
 
+  public sortField: "name" | "price" = "name";
+
+  public computeList(): void {
+    if (this.presentList) {
+      this.presentList = this.presentList.sort((p1: Present, p2: Present) => {
+        const isPresent1Complete: boolean = this.isPresentComplete(p1);
+        const isPresent2Complete: boolean = this.isPresentComplete(p2);
+        if ((isPresent1Complete && isPresent2Complete) || (!isPresent1Complete && !isPresent2Complete)) {
+          return ("" + p1[this.sortField]).localeCompare(("" + p2[this.sortField]));
+        }
+        if (isPresent1Complete) {
+          return -1;
+        }
+        return 1;
+      })
+      return;
+    }
+    this.presentList = [];
+  }
+
   private warnAndStopLoading(errorMessage: string): void {
     this.snackBar.open(errorMessage, 'Ok', SNACK_BAR_CONFIG_ERROR);
     this.listLoading = false;
@@ -154,5 +175,9 @@ export class PresentListComponent implements OnInit {
     this.snackBar.open(confirmMessage, '', SNACK_BAR_CONFIG_SUCCESS);
     this.actionLoading = false;
     this.reloadList();
+  }
+
+  private isPresentComplete(p: Present): boolean {
+    return p.quantity <= p.ordered;
   }
 }

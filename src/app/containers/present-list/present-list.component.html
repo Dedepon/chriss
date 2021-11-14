@@ -2,6 +2,15 @@
   <div class="spinner-container" *ngIf="listLoading">
     <div class="loader full-size">Loading...</div>
   </div>
+  <div class="present-list-sort">
+    <mat-form-field>
+      <mat-label>Trier par...</mat-label>
+      <mat-select [(ngModel)]="sortField" (selectionChange)="computeList()"> multiple>
+        <mat-option [value]="'price'">Prix</mat-option>
+        <mat-option [value]="'name'">Nom</mat-option>
+      </mat-select>
+    </mat-form-field>
+  </div>
   <div class="present-container-list">
     <div
       class="present-container"
