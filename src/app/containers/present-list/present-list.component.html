@@ -5,9 +5,11 @@
   <div class="present-list-sort">
     <mat-form-field>
       <mat-label>Trier par...</mat-label>
-      <mat-select [(ngModel)]="sortField" (selectionChange)="computeList()"> multiple>
-        <mat-option [value]="'price'">Prix</mat-option>
-        <mat-option [value]="'name'">Nom</mat-option>
+      <mat-select [(ngModel)]="sortField" (selectionChange)="computeList()">
+        <mat-option [value]="'priceAsc'">Prix (asc)</mat-option>
+        <mat-option [value]="'priceDesc'">Prix (desc)</mat-option>
+        <mat-option [value]="'nameAsc'">Nom (asc)</mat-option>
+        <mat-option [value]="'nameDesc'">Nom (desc)</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

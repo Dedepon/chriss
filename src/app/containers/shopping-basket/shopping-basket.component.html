@@ -31,7 +31,7 @@
         <span *ngIf="presentOrder.payment === 'payment'"
           >Viré sur notre compte : {{ presentOrder.totalPrice }}€</span
         >
-        <mat-icon (click)="deleteItem(presentOrder)"
+        <mat-icon  matTooltip="Retirer du panier" (click)="deleteItem(presentOrder)"
           >remove_shopping_cart</mat-icon
         >
       </div>

@@ -145,7 +145,7 @@ export class PresentListComponent implements OnInit {
     );
   }
 
-  public sortField: "name" | "price" = "name";
+  public sortField: "nameAsc" | "nameDesc" | "priceAsc" | "priceDesc" = "nameAsc";
 
   public computeList(): void {
     if (this.presentList) {
@@ -153,7 +153,10 @@ export class PresentListComponent implements OnInit {
         const isPresent1Complete: boolean = this.isPresentComplete(p1);
         const isPresent2Complete: boolean = this.isPresentComplete(p2);
         if ((isPresent1Complete && isPresent2Complete) || (!isPresent1Complete && !isPresent2Complete)) {
-          return ("" + p1[this.sortField]).localeCompare(("" + p2[this.sortField]));
+          if (this.sortField.startsWith("name")) {
+            return p1.name.localeCompare(p2.name) * (this.sortField.indexOf("Asc") === -1 ? -1 : 1);
+          }
+          return p1.price - p2.price * (this.sortField.indexOf("Asc") === -1 ? -1 : 1);
         }
         if (isPresent1Complete) {
           return -1;

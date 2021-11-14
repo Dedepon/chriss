@@ -18,6 +18,7 @@ import { MatDialogModule } from "@angular/material/dialog";
 import { MatButtonToggleModule } from "@angular/material/button-toggle";
 import { MatIconModule } from "@angular/material/icon";
 import { MatExpansionModule } from "@angular/material/expansion";
+import { MatTooltipModule } from "@angular/material/tooltip";
 
 import { PresentListComponent } from "./containers/present-list/present-list.component";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
@@ -91,7 +92,8 @@ const appRoutes: Routes = [
     MatButtonToggleModule,
     MatIconModule,
     MatExpansionModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatTooltipModule
   ],
   providers: [],
   bootstrap: [AppComponent],
