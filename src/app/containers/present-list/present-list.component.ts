@@ -156,7 +156,7 @@ export class PresentListComponent implements OnInit {
           if (this.sortField.startsWith("name")) {
             return p1.name.localeCompare(p2.name) * (this.sortField.indexOf("Asc") === -1 ? -1 : 1);
           }
-          return p1.price - p2.price * (this.sortField.indexOf("Asc") === -1 ? -1 : 1);
+          return (p1.price - p2.price) * (this.sortField.indexOf("Asc") === -1 ? -1 : 1);
         }
         if (isPresent1Complete) {
           return -1;
