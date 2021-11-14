@@ -35,8 +35,8 @@
   display: flex;
   flex-direction: row;
   align-items: center;
+  justify-content: space-between;
   .left-column {
-    width: 80%;
     display: flex;
     flex-direction: row;
     align-items: center;
@@ -71,5 +71,17 @@
     mat-icon {
       color: red;
     }
+  }
+}
+
+@media (max-width: 850px) {
+  .order-article {
+    height: auto;
+    width: 80%;
+    margin: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: space-between;
   }
 }

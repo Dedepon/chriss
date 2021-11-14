@@ -15,6 +15,7 @@ router.post("/", function (req, res, next) {
   Present.create(
     {
       ...req.body,
+      price: Number(req.body.price.replace(",", ".").replace("€", "")),
       ordered: 0,
       status: "ongoing",
     },
@@ -27,7 +28,13 @@ router.post("/", function (req, res, next) {
 
 /* Update present */
 router.put("/:id", function (req, res, next) {
-  Present.findByIdAndUpdate(req.params.id, req.body, function (err, post) {
+  const updateElement = req.body;
+  if (req.body.price) {
+    updateElement.price = Number(
+      req.body.price.replace(",", ".").replace("€", "")
+    );
+  }
+  Present.findByIdAndUpdate(req.params.id, updateElement, function (err, post) {
     if (err) return next(err);
     res.json(post);
   });
