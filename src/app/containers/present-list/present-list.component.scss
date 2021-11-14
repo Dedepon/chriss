@@ -40,6 +40,12 @@
         .present-name {
           align-self: center;
         }
+      }
+      .present-image-block {
+        flex-grow: 1;
+        display: flex;
+        align-items: center;
+        justify-self: center;
         .present-image {
           align-self: center;
           max-height: 280px;
