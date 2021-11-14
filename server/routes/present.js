@@ -29,7 +29,7 @@ router.post("/", function (req, res, next) {
 /* Update present */
 router.put("/:id", function (req, res, next) {
   const updateElement = req.body;
-  if (req.body.price) {
+  if (typeof req.body.price !== "number") {
     updateElement.price = Number(
       req.body.price.replace(",", ".").replace("€", "")
     );

@@ -49,6 +49,7 @@ export class PresentListComponent implements OnInit {
     this.editedPresent = present || new Present();
     this.dialogRef = this.dialog.open(this.presentFormDialog, {
       width: '600px',
+      disableClose: true
     });
   }
 
