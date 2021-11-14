@@ -1,12 +1,15 @@
 .present-list {
   position: relative;
   width: 100%;
+  .present-list-sort {
+    margin-left: 24px;
+  }
   .present-container-list {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
     justify-content: center;
-    margin: 24px;
+    margin: 0 24px 24px 24px;
     .present-container {
       display: flex;
       flex-direction: column;
