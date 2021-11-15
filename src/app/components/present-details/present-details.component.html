@@ -7,7 +7,7 @@
     <img class="present-image" [src]="present.imageUrl" />
     <div class="present-details">
       <div class="row">
-        <span class="present-comment">{{ present.comment }}</span>
+        <span class="present-comment" [innerHTML]="present.comment"></span>
       </div>
       <br />
       <div class="row">
@@ -30,6 +30,7 @@
       </div>
       <div class="empty-space"></div>
       <ng-container *ngIf="present.ordered < present.quantity">
+        <mat-divider></mat-divider>
         <div class="row">
           Choisissez comment vous souhaitez nous faire parvenir le cadeau :
         </div>
@@ -74,7 +75,7 @@
     mat-raised-button
     color="primary"
     [disabled]="
-      loading || quantity === 0 || quantity > present.quantity - present.ordered
+      loading || quantity === 0 || quantity > present.quantity - present.ordered || !paymentType
     "
     (click)="save()"
   >

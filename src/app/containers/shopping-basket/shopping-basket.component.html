@@ -7,7 +7,7 @@
       <div class="left-column">
         <img [src]="presentOrder.present.imageUrl" />
         <div class="article-infos">
-          <a [href]="presentOrder.present.url" class="article-name">{{ presentOrder.present.name }}</a>
+          <a [href]="presentOrder.present.url" class="article-name" target="_blank">{{ presentOrder.present.name }}</a>
           <span class="article-quantity"
             >Qté:
             <mat-form-field>
@@ -83,7 +83,7 @@
           <div class="left-column">
             <img [src]="presentOrder.present.imageUrl" />
             <div class="article-infos">
-              <a [href]="presentOrder.present.url" class="article-name">{{ presentOrder.present.name }}</a>
+              <a [href]="presentOrder.present.url" class="article-name" target="_blank">{{ presentOrder.present.name }}</a>
               <span class="article-quantity"
                 >Qté:&nbsp;{{ presentOrder.quantity }}
               </span>

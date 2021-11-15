@@ -6,10 +6,10 @@
     <mat-form-field>
       <mat-label>Trier par...</mat-label>
       <mat-select [(ngModel)]="sortField" (selectionChange)="computeList()">
-        <mat-option [value]="'priceAsc'">Prix (asc)</mat-option>
-        <mat-option [value]="'priceDesc'">Prix (desc)</mat-option>
-        <mat-option [value]="'nameAsc'">Nom (asc)</mat-option>
-        <mat-option [value]="'nameDesc'">Nom (desc)</mat-option>
+        <mat-option [value]="'priceAsc'">Prix (croissant)</mat-option>
+        <mat-option [value]="'priceDesc'">Prix (décroissant)</mat-option>
+        <mat-option [value]="'nameAsc'">Nom (croissant)</mat-option>
+        <mat-option [value]="'nameDesc'">Nom (décroissant)</mat-option>
       </mat-select>
     </mat-form-field>
   </div>

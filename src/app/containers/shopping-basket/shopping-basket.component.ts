@@ -96,8 +96,24 @@ export class ShoppingBasketComponent implements OnInit {
     if (this.order) {
       this.loading = true;
       this.orderService.closeOrder(this.order).subscribe(
-        () =>
-          this.confirmAndReload('Panier confirmé ! Merci pour les cadeaux !', true),
+        () => {
+          this.orderService.createOrder(new Order()).subscribe(
+            () => {},
+            (e: HttpErrorResponse) =>
+              this.warnAndStopLoading(
+                "Une erreur est survenue lors de la création d'un nouveau panier : " +
+                  e &&
+                  e.error &&
+                  e.error.error
+                  ? e.error.error
+                  : e.toString()
+              )
+          );
+          this.confirmAndReload(
+            'Panier confirmé ! Merci pour les cadeaux !',
+            true
+          );
+        },
         (e: HttpErrorResponse) =>
           this.warnAndStopLoading(
             'Une erreur est survenue lors de la confirmation du panier : ' +
@@ -126,11 +142,14 @@ export class ShoppingBasketComponent implements OnInit {
     );
   }
 
-  private confirmAndReload(confirmMessage: string, redirectToProfile: boolean = false): void {
+  private confirmAndReload(
+    confirmMessage: string,
+    redirectToProfile: boolean = false
+  ): void {
     this.snackBar.open(confirmMessage, '', SNACK_BAR_CONFIG_SUCCESS);
     this.loadOrders();
     if (redirectToProfile) {
-      this.router.navigate(["/profile"]);
+      this.router.navigate(['/profile']);
     }
   }
 
