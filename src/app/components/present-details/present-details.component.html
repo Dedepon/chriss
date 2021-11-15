@@ -13,7 +13,7 @@
       <div class="row">
         <span class="present-price">{{ present.price }}€</span>
       </div>
-      <div class="row">
+      <div class="row" *ngIf="present.quantity < 999999">
         <span class="present-quantity"
           >{{ present.ordered }}/{{ present.quantity }} ont déjà été
           offerts</span
