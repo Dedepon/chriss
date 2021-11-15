@@ -22,10 +22,9 @@ export class PresentDetailsComponent implements OnInit {
   constructor() {}
 
   public ngOnInit(): void {
-    this.paymentType =
-      this.present.paymentMethod.indexOf('directOrder') !== -1
-        ? 'directOrder'
-        : 'payment';
+    if (this.present.paymentMethod.length === 1) {
+      this.paymentType = this.present.paymentMethod[0];
+    }
   }
 
   public save(): void {

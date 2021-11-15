@@ -29,7 +29,10 @@
         >
       </div>
       <div class="empty-space"></div>
-      <ng-container *ngIf="present.ordered < present.quantity">
+      <ng-container *ngIf="present.ordered < present.quantity"><div class="row">
+        <div class="row">
+          Choisissez comment vous souhaitez nous faire parvenir le cadeau :
+        </div>
         <div class="row">
           <mat-radio-group
             aria-label="Sélectionnez un moyen de nous faire parvenir le cadeau"
@@ -38,7 +41,7 @@
             <mat-radio-button
               value="directOrder"
               *ngIf="present.paymentMethod.indexOf('directOrder') !== -1"
-              >Livrer le cadeau chez nous</mat-radio-button
+              >Livrer le cadeau chez nous (ou en main propre)</mat-radio-button
             >
             <mat-radio-button
               value="payment"
