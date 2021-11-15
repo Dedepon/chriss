@@ -25,9 +25,8 @@ export class OrderService {
           orders.map((o: Order) => {
             o.date = o.date ? new Date(o.date).toLocaleString() : '';
             return o;
-          }),
+          })),
         tap((orders: Order[]) => this.ordersSubject$.next(orders))
-      )
     );
   }
 
