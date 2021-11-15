@@ -7,7 +7,7 @@
       <div class="left-column">
         <img [src]="presentOrder.present.imageUrl" />
         <div class="article-infos">
-          <span class="article-name">{{ presentOrder.present.name }}</span>
+          <a [href]="presentOrder.present.url" class="article-name">{{ presentOrder.present.name }}</a>
           <span class="article-quantity"
             >Qté:
             <mat-form-field>
@@ -45,6 +45,14 @@
     </div>
   </div>
   <mat-divider></mat-divider>
+  <div class="order-info">
+    <span>Merci pour vos cadeaux.</span>
+    <span>Si vous avez choisis de nous verser l'argent pour qu'on puisse prendre le cadeau nous-même, vous pouvez faire un virement sur le compte : BE96 0017 8093 9905.</span>
+    <span>Si vous avez choisis de passer par le site revendeur pour certains cadeaux, vous pouvez les faire livrer à l'adresse suivante :</span>
+    <span>rue des coquelicots, 11</span>
+    <span>4577, Modave</span>
+  </div>
+  <mat-divider></mat-divider>
   <div class="old-order">
     <mat-accordion class="old-order" multi>
       <mat-expansion-panel
@@ -63,7 +71,7 @@
                 >Total chez le marchand : {{ oldOrder?.totalPrice }}€</span
               >
               <span *ngIf="oldOrder?.totalPriceToPay"
-                >Total chez le marchand : {{ oldOrder?.totalPriceToPay }}€</span
+                >Total par virement : {{ oldOrder?.totalPriceToPay }}€</span
               >
             </div>
           </mat-panel-description>
@@ -75,7 +83,7 @@
           <div class="left-column">
             <img [src]="presentOrder.present.imageUrl" />
             <div class="article-infos">
-              <span class="article-name">{{ presentOrder.present.name }}</span>
+              <a [href]="presentOrder.present.url" class="article-name">{{ presentOrder.present.name }}</a>
               <span class="article-quantity"
                 >Qté:&nbsp;{{ presentOrder.quantity }}
               </span>

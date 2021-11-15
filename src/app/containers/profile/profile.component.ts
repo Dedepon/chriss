@@ -25,6 +25,7 @@ export class ProfileComponent implements OnInit {
       lastName: new FormControl(),
       email: new FormControl(),
       phone: new FormControl(),
+      message: new FormControl()
     });
   }
 

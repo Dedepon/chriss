@@ -28,6 +28,10 @@
     }
   }
 }
+.order-info {
+  display: flex;
+  flex-direction: column;
+}
 .order-article {
   height: 128px;
   width: 80%;

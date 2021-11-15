@@ -159,9 +159,9 @@ export class PresentListComponent implements OnInit {
           return (p1.price - p2.price) * (this.sortField.indexOf("Asc") === -1 ? -1 : 1);
         }
         if (isPresent1Complete) {
-          return -1;
+          return 1;
         }
-        return 1;
+        return -1;
       })
       return;
     }

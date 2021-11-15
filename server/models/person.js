@@ -6,6 +6,7 @@ const PersonSchema = new mongoose.Schema({
   lastName: String,
   email: String,
   phone: String,
+  message: String,
   userId: { type: String, required: true},
   password: { type: String, required: true}
 });

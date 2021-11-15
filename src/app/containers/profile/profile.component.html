@@ -45,6 +45,12 @@
           <input matInput formControlName="phone" />
         </mat-form-field>
       </div>
+      <div class="form-row">
+        <mat-form-field>
+          <mat-label>Message pour les parents</mat-label>
+          <textarea matInput formControlName="message" />
+        </mat-form-field>
+      </div>
       <button mat-raised-button (click)="save()">Sauvegarder</button>
     </form>
   </div>

@@ -1,6 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import {
   SNACK_BAR_CONFIG_ERROR,
   SNACK_BAR_CONFIG_SUCCESS,
@@ -23,7 +24,8 @@ export class ShoppingBasketComponent implements OnInit {
   constructor(
     private orderService: OrderService,
     private presentOrderService: PresentOrderService,
-    private snackBar: MatSnackBar
+    private snackBar: MatSnackBar,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -95,7 +97,7 @@ export class ShoppingBasketComponent implements OnInit {
       this.loading = true;
       this.orderService.closeOrder(this.order).subscribe(
         () =>
-          this.confirmAndReload('Panier confirmé ! Merci pour les cadeaux !'),
+          this.confirmAndReload('Panier confirmé ! Merci pour les cadeaux !', true),
         (e: HttpErrorResponse) =>
           this.warnAndStopLoading(
             'Une erreur est survenue lors de la confirmation du panier : ' +
@@ -124,9 +126,12 @@ export class ShoppingBasketComponent implements OnInit {
     );
   }
 
-  private confirmAndReload(confirmMessage: string): void {
+  private confirmAndReload(confirmMessage: string, redirectToProfile: boolean = false): void {
     this.snackBar.open(confirmMessage, '', SNACK_BAR_CONFIG_SUCCESS);
     this.loadOrders();
+    if (redirectToProfile) {
+      this.router.navigate(["/profile"]);
+    }
   }
 
   private warnAndStopLoading(errorMessage: string): void {
