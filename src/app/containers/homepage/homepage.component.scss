@@ -7,11 +7,12 @@
   .introduction {
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: space-around;
     align-items: center;
-    margin: 0 48px 150px 48px;
+    margin: 0 48px;
     img {
-      max-width: 25vw;
+      margin-top: 24px;
+      max-width: 10vw;
     }
   }
 }
