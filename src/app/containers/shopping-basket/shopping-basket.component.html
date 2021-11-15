@@ -7,7 +7,12 @@
       <div class="left-column">
         <img [src]="presentOrder.present.imageUrl" />
         <div class="article-infos">
-          <a [href]="presentOrder.present.url" class="article-name" target="_blank">{{ presentOrder.present.name }}</a>
+          <a
+            [href]="presentOrder.present.url"
+            class="article-name"
+            target="_blank"
+            >{{ presentOrder.present.name }}</a
+          >
           <span class="article-quantity"
             >Qté:
             <mat-form-field>
@@ -31,7 +36,9 @@
         <span *ngIf="presentOrder.payment === 'payment'"
           >Viré sur notre compte : {{ presentOrder.totalPrice }}€</span
         >
-        <mat-icon  matTooltip="Retirer du panier" (click)="deleteItem(presentOrder)"
+        <mat-icon
+          matTooltip="Retirer du panier"
+          (click)="deleteItem(presentOrder)"
           >remove_shopping_cart</mat-icon
         >
       </div>
@@ -47,8 +54,15 @@
   <mat-divider></mat-divider>
   <div class="order-info">
     <span>Merci pour vos cadeaux.</span>
-    <span>Si vous avez choisis de nous verser l'argent pour qu'on puisse prendre le cadeau nous-même, vous pouvez faire un virement sur le compte : BE96 0017 8093 9905.</span>
-    <span>Si vous avez choisis de passer par le site revendeur pour certains cadeaux, vous pouvez les faire livrer à l'adresse suivante :</span>
+    <span
+      >Si vous avez choisis de nous verser l'argent pour qu'on puisse prendre le
+      cadeau nous-même, vous pouvez faire un virement sur le compte : BE96 0017
+      8093 9905.</span
+    >
+    <span
+      >Si vous avez choisis de passer par le site revendeur pour certains
+      cadeaux, vous pouvez les faire livrer à l'adresse suivante :</span
+    >
     <span>rue des coquelicots, 11</span>
     <span>4577, Modave</span>
   </div>
@@ -61,9 +75,7 @@
       >
         <mat-expansion-panel-header>
           <mat-panel-title>
-            <span class="old-order-title">{{
-              oldOrder?.date?.toLocaleString()
-            }}</span>
+            <span class="old-order-title">{{ oldOrder?.date }}</span>
           </mat-panel-title>
           <mat-panel-description>
             <div class="old-order-prices">
@@ -83,7 +95,12 @@
           <div class="left-column">
             <img [src]="presentOrder.present.imageUrl" />
             <div class="article-infos">
-              <a [href]="presentOrder.present.url" class="article-name" target="_blank">{{ presentOrder.present.name }}</a>
+              <a
+                [href]="presentOrder.present.url"
+                class="article-name"
+                target="_blank"
+                >{{ presentOrder.present.name }}</a
+              >
               <span class="article-quantity"
                 >Qté:&nbsp;{{ presentOrder.quantity }}
               </span>
