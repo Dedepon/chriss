@@ -51,7 +51,7 @@ var options = {
 }
 
 // Mongoose connection
-mongoose.connect("mongodb://127.0.0.1:30000/chriss?replicaSet=rs0", options)
+mongoose.connect("mongodb://denis:goulougoulou@127.0.0.1:27017/chriss?replicaSet=rs0", options)
   .then(() => console.log("connection succesful"))
   .catch((err) => console.error(err));
 
