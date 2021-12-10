@@ -30,7 +30,7 @@ export class AppComponent {
   }
 
   public isOutOfHomePage(): boolean {
-    return !this.router.isActive("home", { paths: "exact", queryParams: "exact", fragment: "ignored", matrixParams: "ignored" });
+    return !this.router.isActive("home", { paths: "exact", queryParams: "exact", fragment: "ignored", matrixParams: "ignored" }) && !this.router.isActive("help", { paths: "exact", queryParams: "exact", fragment: "ignored", matrixParams: "ignored" });
   }
 
   public logout(): void {
