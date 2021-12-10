@@ -1,0 +1,30 @@
+.help-page {
+  margin: 0 24px;
+  .title {
+    text-decoration: underline;
+  }
+  .list-block {
+    display: flex;
+    flex-direction: column;
+    .image {
+      align-self: center;
+      input[type="checkbox"] {
+        display: none;
+        &:checked {
+          ~ label {
+            img {
+              transform: scale(2);
+              cursor: zoom-out;
+            }
+          }
+        }
+      }
+      img {
+        max-width: 30vw;
+        border: 1px solid black;
+        transition: transform 0.25s ease;
+        cursor: zoom-in;
+      }
+    }
+  }
+}

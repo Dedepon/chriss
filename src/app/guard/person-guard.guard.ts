@@ -19,7 +19,7 @@ export class PersonGuardGuard implements CanActivate {
         document.cookie = "userId= ; expires = Thu, 01 Jan 1970 00:00:00 GMT";
         GLOBAL.LOGGED_IN = GLOBAL.LOGGED_IN || isCookieSet;
       }
-    return (route.routeConfig && route.routeConfig.path === "home") ||  GLOBAL.LOGGED_IN || this.router.navigate(["/home"]);
+    return (route.routeConfig && ["home", "help"].includes(<string>route.routeConfig.path)) ||  GLOBAL.LOGGED_IN || this.router.navigate(["/home"]);
   }
   
 }

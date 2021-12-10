@@ -1,6 +1,7 @@
 <div class="header" *ngIf="isOutOfHomePage()">
     <button mat-button [routerLink]="['/presents']">Liste des cadeaux</button>
     <div class="right-container">
+        <button mat-icon-button matTooltip="Aide pour l'utilisation du site" [routerLink]="['/help']"><mat-icon>help_outline</mat-icon></button>
         <button mat-icon-button matTooltip="Infos personnelles" [routerLink]="['/profile']"><mat-icon>person</mat-icon></button>
         <button mat-icon-button matTooltip="Panier" [routerLink]="['/basket']"><mat-icon>shopping_cart</mat-icon></button>
         <button mat-icon-button matTooltip="Déconnexion" (click)="logout()"><mat-icon>exit_to_app</mat-icon></button>

@@ -24,6 +24,7 @@ import { PresentListComponent } from "./containers/present-list/present-list.com
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { PresentFormComponent } from "./components/present-form/present-form.component";
 import { HomepageComponent } from "./containers/homepage/homepage.component";
+import { HelpComponent } from "./containers/help/help.component";
 import { PresentDetailsComponent } from "./components/present-details/present-details.component";
 import { PersonGuardGuard } from "./guard/person-guard.guard";
 import { ShoppingBasketComponent } from "./containers/shopping-basket/shopping-basket.component";
@@ -56,6 +57,12 @@ const appRoutes: Routes = [
     canActivate: [PersonGuardGuard]
   },
   {
+    path: "help",
+    component: HelpComponent,
+    data: { title: "Aide" },
+    canActivate: [PersonGuardGuard]
+  },
+  {
     path: "",
     redirectTo: "home",
     pathMatch: "full",
@@ -71,6 +78,7 @@ const appRoutes: Routes = [
     PresentDetailsComponent,
     ShoppingBasketComponent,
     ProfileComponent,
+    HelpComponent
   ],
   imports: [
     BrowserModule,

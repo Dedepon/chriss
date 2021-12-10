@@ -21,7 +21,7 @@ export class AppComponent {
     }
   }
 
-  public title = "chriss";
+  public title = "Irène";
 
   private sk: string[] = ["ArrowUp", "ArrowUp", "ArrowDown", "ArrowDown", "ArrowLeft", "ArrowRight", "ArrowLeft", "ArrowRight", "b", "a"];
   private pos: number = 0;
