@@ -143,4 +143,22 @@ router.put("/:id", function (req, res, next) {
   });
 });
 
+
+
+router.get("/getAllOrders", function (req, res, next) {
+  Order.find(function (err, orders) {
+    if (err) return next(err);
+    const persons = [];
+    orders.forEach((o) => {
+      const i = persons.findIndex((p) => p.donator._id === o.donator._id);
+      if (i === -1) {
+        persons.push({ donator: o.donator, presents: o.presents.map((p) => { return { name: p.present.name, method: p.payment, price: p.totalPrice }}) });
+      } else {
+        persons[i].presents = persons[i].presents.concat(o.presents.map((p) => { return { name: p.present.name, method: p.payment, price: p.totalPrice }}));
+      }
+    })
+    res.json(persons);
+  }).populate("donator").select("-password").populate({ path: "presents", populate: "present" });
+});
+
 module.exports = router;
