@@ -3,7 +3,7 @@ const UTILS = {
     getUserIdCookie: (req) => {
         if (req && req.headers.cookie && req.headers.cookie.indexOf("userId") !== -1) {
             const userId = req.headers.cookie.split("userId=")[1].split(";")[0];
-            return userId ? userId : undefined;
+            return userId ? decodeURI(userId) : undefined;
         }
         return undefined;
     },
